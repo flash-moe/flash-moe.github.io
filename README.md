@@ -1,80 +1,25 @@
-# Academic Project Page Template
+# [NeurIPS 2025] FlashMoE: Fast Distributed MoE in a Single Kernel
 
-> **Update (September 2025)**: This template has been modernized with better design, SEO, and mobile support. For the original version, see the [original-version branch](https://github.com/eliahuhorwitz/Academic-project-page-template/tree/original-version).
+This is the repository for the paper: </br>
 
-A clean, responsive template for academic project pages.
-
-
-Example project pages built using this template are:
-- https://horwitz.ai/probex
-- https://vision.huji.ac.il/probegen
-- https://horwitz.ai/mother
-- https://horwitz.ai/spectral_detuning
-- https://vision.huji.ac.il/ladeda
-- https://vision.huji.ac.il/dsire
-- https://horwitz.ai/podd
-- https://dreamix-video-editing.github.io
-- https://horwitz.ai/conffusion
-- https://horwitz.ai/3d_ads/
-- https://vision.huji.ac.il/ssrl_ad
-- https://vision.huji.ac.il/deepsim
+> [FlashMoE: Fast Distributed MoE in a Single Kernel](https://arxiv.org/abs/2506.04667).
+>
+> Osayamen Jonathan Aimuyo, Byungsoo Oh, Rachee Singh
 
 
+Check out our [website](https://flash-moe.github.io)!
 
-## Start using the template
-To start using the template click on `Use this Template`.
 
-The template uses html for controlling the content and css for controlling the style. 
-To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
+## Abstract
+The computational sparsity of Mixture-of-Experts (MoE) models enables sub-linear growth in compute cost as model size increases, thus offering a scalable path to training massive neural networks. However, existing implementations suffer from <em>low GPU utilization</em>, <em>significant latency overhead</em>, and a fundamental <em>inability to leverage task locality</em>, primarily due to CPU-managed scheduling, host-initiated communication, and frequent kernel launches. To overcome these limitations, we develop FlashMoE, a fully GPU-resident MoE operator that fuses expert computation and inter-GPU communication into a <em>single persistent GPU kernel</em>. FlashMoE enables fine-grained pipelining of dispatch, compute, and combine phases, eliminating launch overheads and reducing idle gaps. Unlike existing work, FlashMoE obviates bulk-synchronous collectives for one-sided, device-initiated, inter-GPU (R)DMA transfers, thus unlocking <em>payload efficiency</em>, where we eliminate bloated or redundant network payloads in sparsely activated layers. When evaluated on a single 8-H100 GPU node with MoE models having up to 128 experts and 16K token sequences, FlashMoE achieves up to <strong>9</strong>× higher GPU utilization, <strong>6</strong>× lower latency, <strong>5.7</strong>× higher throughput, and <strong>4</strong>× better overlap efficiency compared to state-of-the-art baselines, despite using FP32 while baselines use FP16. FlashMoE demonstrates that principled GPU kernel-hardware co-design is key to unlocking the performance ceiling of large-scale distributed ML workloads.
 
-**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
+## Citation
 
-## What's New
-
-- Modern, clean design with better mobile support
-- Improved SEO with proper meta tags and structured data
-- Performance improvements (lazy loading, optimized assets)
-- More Works dropdown
-- Copy button for BibTeX citations
-- Better accessibility
-
-## Components
-
-- Teaser video
-- Image carousel
-- YouTube video embedding
-- Video carousel
-- PDF poster viewer
-- BibTeX citation
-
-## Customization
-
-The HTML file has TODO comments showing what to replace:
-
-- Paper title, authors, institution, conference
-- Links (arXiv, GitHub, etc.)
-- Abstract and descriptions  
-- Videos, images, and PDFs
-- Related works in the dropdown
-- Meta tags for SEO and social sharing
-
-### Meta Tags
-The template includes meta tags for better search engine visibility and social media sharing. These appear in the `<head>` section and help with:
-- Google Scholar indexing
-- Social media previews (Twitter, Facebook, LinkedIn)
-- Search engine optimization
-
-Create a 1200x630px social preview image at `static/images/social_preview.png`.
-
-## Tips
-
-- Compress images with [TinyPNG](https://tinypng.com)
-- Use YouTube for large videos (>10MB)  
-- Replace the favicon in `static/images/`
-- Works with GitHub Pages
-
-## Acknowledgments
-Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
-
-## Website License
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+```
+@article{aimuyo2025flashmoe,
+  title={FlashMoE: Fast Distributed MoE in a Single Kernel},
+  author={Aimuyo, Osayamen Jonathan and Oh, Byungsoo and Singh, Rachee},
+  journal={Advances in Neural Information Processing Systems},
+  year={2025},
+}
+```
